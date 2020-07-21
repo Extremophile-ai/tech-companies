@@ -21,8 +21,8 @@ app.use(
 
   
 app.get('/', (req, res)=>{
-  // res.send('success!')
-  console.log('success!')
+res.send('Top Tech companies in Nigeria!')
+  
 });
 
 // GET ALL NIGERIAN TECH COMPANIES IN THE DB
@@ -39,10 +39,15 @@ app.post('/company/create', createNewTechCompany );
 app.put('/company/:id', updateTechCompanyInfo);
 
 // DELETE TECH COMPANY
-app.delete('/company/:id', deleteTechCompany)
+app.delete('/company/:id', deleteTechCompany);
 
 
 
-app.listen(3003, ()=> {
-    console.log('Server started!!')
+
+app.listen(process.env.PORT, () => {
+  console.log('Connected') 
 });
+
+// app.listen(3003, ()=> { 
+//     console.log('Server started!!') 
+// });

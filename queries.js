@@ -1,27 +1,27 @@
 import {Pool} from 'pg';
+import dotenv from 'dotenv';
 
-const db = new Pool({
-    host : '127.0.0.1',
-    user : 'DevCareer',
-    password : 'Power1050',
-    database : 'DevCareer'
-    
+dotenv.config();
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL
 });
 
-db.connect();
-
+pool.on('connect', () => {
+  console.log('connected to the db'); 
+});
 
 const getAllNgTechCompanies = (req, res) => {
-    db.query(
+    pool.query(
       'SELECT * FROM ng_tech_companies ORDER BY id ASC', 
       (err, results) => {
       res.status(200).json(results.rows);
     })
 }
- 
+
 const getNgTechCompanyById = (req, res) =>{
     const id = parseInt(req.params.id);
-    db.query(
+    pool.query(
       'SELECT * FROM ng_tech_companies WHERE id = $1', 
       [id], 
       (err, results)=>{
@@ -42,7 +42,7 @@ const createNewTechCompany =(req, res) =>{
     req.body.year_founded, 
     req.body.website, 
     req.body.email]
-  db.query(text, values, (err, results) => {
+  pool.query(text, values, (err, results) => {
       if (err) {
         console.log(err.stack)
       } else {
@@ -55,7 +55,7 @@ const createNewTechCompany =(req, res) =>{
 const updateTechCompanyInfo =(req, res) =>{
     const id = parseInt(req.params.id);
     const {name, location, name_of_ceo, year_founded, email, website} = req.body;
-    db.query(`UPDATE ng_tech_companies SET name = $1, location = $2, name_of_ceo = $3, year_founded = $4, email = $5, website = $6 WHERE id = ${id}`,
+    pool.query(`UPDATE ng_tech_companies SET name = $1, location = $2, name_of_ceo = $3, year_founded = $4, email = $5, website = $6 WHERE id = ${id}`,
     [name, location, name_of_ceo, year_founded, email, website],
     (err, results) => {
         if (err) {
@@ -70,7 +70,7 @@ const updateTechCompanyInfo =(req, res) =>{
 
 const deleteTechCompany =(req, res) =>{
     const id = parseInt(req.params.id);
-    db.query('DELETE FROM ng_tech_companies WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM ng_tech_companies WHERE id = $1', [id], (error, results) => {
         if (error) {
           throw error
         }
