@@ -32,6 +32,7 @@ app.get('/company', getAllNgTechCompanies );
 app.get('/company/:id', getNgTechCompanyById); 
 
 
+
 // CREATE NEW COMPANY AND ADD TO THE DB
 app.post('/company/create', createNewTechCompany );
 
