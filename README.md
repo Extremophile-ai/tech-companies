@@ -5,7 +5,7 @@ An  'esm' package was used to enable the use of the es6 import syntax.
 
 To start, run  'nodemon -r esm server.js'
 
-
+Link to Heroku https://stark-reef-17608.herokuapp.com/
 
 To get all Tech companies,
 GET https://stark-reef-17608.herokuapp.com/company
