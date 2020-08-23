@@ -1,19 +1,17 @@
-import {Pool} from 'pg';
-import dotenv from 'dotenv';
+import pool from './db/db';
 
-dotenv.config();
+import {
+  getAll,
+  getOne,
+  createNewText,
+  updateOne,
+  deleteQuery
+} from './query/index';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
-
-pool.on('connect', () => {
-  console.log('connected to the db'); 
-});
 
 const getAllNgTechCompanies = (req, res) => {
     pool.query(
-      'SELECT * FROM ng_tech_companies ORDER BY id ASC', 
+      getAll, 
       (err, results) => {
       res.status(200).json(results.rows);
     })
@@ -21,8 +19,8 @@ const getAllNgTechCompanies = (req, res) => {
 
 const getNgTechCompanyById = (req, res) =>{
     const id = parseInt(req.params.id);
-    pool.query(
-      'SELECT * FROM ng_tech_companies WHERE id = $1', 
+    pool.query( 
+      getOne, 
       [id], 
       (err, results)=>{
         res.status(200).json(results.rows);
@@ -34,15 +32,9 @@ const getNgTechCompanyById = (req, res) =>{
 
 
 const createNewTechCompany =(req, res) =>{
-  const text = 'INSERT INTO ng_tech_companies (name, location, name_of_ceo, year_founded, website, email ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
-  const values = [
-    req.body.name, 
-    req.body.location, 
-    req.body.name_of_ceo, 
-    req.body.year_founded, 
-    req.body.website, 
-    req.body.email]
-  pool.query(text, values, (err, results) => {
+  const {name, location, name_of_ceo, year_founded, email, website} = req.body;
+  const Values =  [name, location, name_of_ceo, year_founded, website, email];
+  pool.query(createNewText, Values , (err, results) => {
       if (err) {
         console.log(err.stack)
       } else {
@@ -52,12 +44,12 @@ const createNewTechCompany =(req, res) =>{
 }
 
 
-const updateTechCompanyInfo =(req, res) =>{
-    const id = parseInt(req.params.id);
+const updateTechCompanyInfo =(req, res) =>{ 
+    const id = parseInt(req.params.id); 
     const {name, location, name_of_ceo, year_founded, email, website} = req.body;
-    pool.query(`UPDATE ng_tech_companies SET name = $1, location = $2, name_of_ceo = $3, year_founded = $4, email = $5, website = $6 WHERE id = ${id}`,
-    [name, location, name_of_ceo, year_founded, email, website],
-    (err, results) => {
+    const Values =  [name, location, name_of_ceo, year_founded, website, email];
+    pool.query(updateOne,Values,
+    (err, res) => {
         if (err) {
             throw err
           }
@@ -70,7 +62,7 @@ const updateTechCompanyInfo =(req, res) =>{
 
 const deleteTechCompany =(req, res) =>{
     const id = parseInt(req.params.id);
-    pool.query('DELETE FROM ng_tech_companies WHERE id = $1', [id], (error, results) => {
+    pool.query(deleteQuery, [id], (error, results) => {
         if (error) {
           throw error
         }

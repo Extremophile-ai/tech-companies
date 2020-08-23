@@ -1,13 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import {
     getAllNgTechCompanies,  
     getNgTechCompanyById, 
     createNewTechCompany, 
     updateTechCompanyInfo, 
     deleteTechCompany
-} from './queries';
-
+} from './src/controllers';
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,13 +16,12 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-)
-
+);
+app.use(cors());
 
   
 app.get('/', (req, res)=>{
-res.send('Top Tech companies in Nigeria!')
-  
+  res.send('Top Tech companies in Nigeria!')
 });
 
 // GET ALL NIGERIAN TECH COMPANIES IN THE DB
@@ -30,7 +29,6 @@ app.get('/company', getAllNgTechCompanies );
 
 // GET ONE TECH COMPANY
 app.get('/company/:id', getNgTechCompanyById); 
-
 
 
 // CREATE NEW COMPANY AND ADD TO THE DB
@@ -45,7 +43,7 @@ app.delete('/company/:id', deleteTechCompany);
 
 
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3003, () => {
   console.log('Connected') 
 });
 
