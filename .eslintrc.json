@@ -1,0 +1,29 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "rules": {
+        "import/no-extraneous-dependencies":"off",
+        "import/newline-after-import": "off",
+        "max-len": 0,
+        "no-console": "off",
+        "import/on-dynamic-require": "off",        
+        "linebreak-style": 0,
+        "consistent-return": "off",
+        "no-undef":"off",
+        "no-unused-vars": 0,
+        "no-shadow":"off",
+        "radix":"off",
+        "no-else-return":"off",
+        "camelcase":"off"
+    }
+}
