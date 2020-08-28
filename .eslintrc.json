@@ -12,6 +12,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "import/no-named-as-default-member":"off",
         "import/no-extraneous-dependencies":"off",
         "import/newline-after-import": "off",
         "max-len": 0,
@@ -23,6 +24,9 @@
         "no-unused-vars": 0,
         "no-shadow":"off",
         "radix":"off",
+        "comma-dangle":"off",
+        "object-curly-newline":"off",
+        "next-line-semi":"off",
         "no-else-return":"off",
         "camelcase":"off"
     }

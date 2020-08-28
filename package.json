@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./src --fix",
     "test": "mocha -r esm ./src/test ",
-    "start": "node -r esm ./src/server.js",
+    "start": "nodemon -r esm ./src/server.js",
     "start:dev": "nodemon --watch"
   },
   "repository": {
