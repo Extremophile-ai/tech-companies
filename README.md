@@ -1,3 +1,8 @@
+
+[![Build Status](https://travis-ci.org/Extremophile-ai/tech-companies.svg?branch=develop)](https://travis-ci.org/Extremophile-ai/tech-companies)
+
+[![Coverage Status](https://coveralls.io/repos/github/Extremophile-ai/tech-companies/badge.svg?branch=develop)](https://coveralls.io/github/Extremophile-ai/tech-companies?branch=develop)
+
 This is an API for top Nigerian based Tech companies.
 
 

@@ -5,6 +5,7 @@
   "main": "./src/server.js",
   "scripts": {
     "lint": "eslint ./src --fix",
+    "coverage": "npm run pretest && jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test": "mocha -r esm ./src/test ",
     "start": "nodemon -r esm ./src/server.js",
     "start:dev": "nodemon --watch"
@@ -22,6 +23,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
