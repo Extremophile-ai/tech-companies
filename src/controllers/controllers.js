@@ -43,17 +43,16 @@ const getNgTechCompanyById = (req, res) => {
       getOne,
       [id],
       (err, results) => {
-        if (err) {
-          throw res.status(404).json({
-            status: 'error',
-            message: 'Oops! An error occured while getting a single company',
-            data: err.stack
-          });
-        } else {
+        if (results.rows.length === 1) {
           res.status(200).json({
             status: 'success',
-            message: 'One company gottn',
+            message: 'One company gotten',
             data: results.rows
+          });
+        } else {
+          return res.status(404).json({
+            status: 'error',
+            message: `Oops! company with ${id} not found`,
           });
         }
       },
@@ -71,17 +70,18 @@ const createNewTechCompany = (req, res) => {
     const { name, location, name_of_ceo, year_founded, email, website } = req.body;
     const Values = [name, location, name_of_ceo, year_founded, email, website];
     pool.query(createNewText, Values, (err, results) => {
-      if (err) {
+      if (results) {
+        console.log(results);
+        return res.status(200).json({
+          status: 'success',
+          message: 'created company successfully',
+          data: results.rows,
+        });
+      } else {
         return res.status(400).json({
           status: 'error',
           data: err.stack,
           message: 'Oops! An error occurred while creating a company.'
-        });
-      } else {
-        return res.status(200).json({
-          status: 'success',
-          message: 'created company successfully',
-          data: results.rows[0],
         });
       }
     });
@@ -97,23 +97,24 @@ const updateTechCompanyInfo = (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const { name, location, name_of_ceo, year_founded, email, website } = req.body;
-    const Values = [name, location, name_of_ceo, year_founded, website, email];
-    pool.query(updateOne, Values,
-      (err, res) => {
-        if (err) {
-          return res.status(404).json({
-            status: 'error',
-            message: 'Error! Company not found',
-            data: err.stack
-          });
-        } else {
-          return res.status(200).json({
-            status: 'success',
-            message: `Company Info modified with ID: ${id}`,
-            data: results.rows
-          });
-        }
-      });
+    const Value = [name, location, name_of_ceo, year_founded, email, website, id];
+    pool.query(updateOne, Value, (err, results) => {
+      if (results.rowCount === 1) {
+        console.log(results.rowCount);
+        console.log(results.rows);
+        return res.status(200).json({
+          status: 'success',
+          message: `Company Info modified with id = ${id}`,
+          data: results.rows
+        });
+      } else {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Error! Company not found',
+          data: err
+        });
+      }
+    });
   } catch (error) {
     return res.status(500).json({
       status: 'error',

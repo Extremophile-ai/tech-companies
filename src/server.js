@@ -20,7 +20,7 @@ app.use(
 app.use(cors());
 
 app.get('/home', (req, res) => {
-  res.send('Top Tech companies in Nigeria!');
+  res.json({ message: 'Top Tech companies in Nigeria!' });
 });
 
 // GET ALL NIGERIAN TECH COMPANIES IN THE DB

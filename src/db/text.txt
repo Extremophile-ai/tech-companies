@@ -1,0 +1,9 @@
+CREATE TABLE NG_tech_companies (
+    id SERIAL PRIMARY KEY NOT NULL, 
+    name VARCHAR(200) UNIQUE NOT NULL, 
+    location VARCHAR(300)  UNIQUE NOT NULL, 
+    name_of_ceo TEXT NOT NULL,
+    year_founded integer,
+    email VARCHAR,
+    website VARCHAR
+  );

@@ -5,8 +5,8 @@
   "main": "./src/server.js",
   "scripts": {
     "lint": "eslint ./src --fix",
-    "coverage": "npm run pretest && jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "test": "mocha -r esm ./src/test ",
+    "test": "nyc cross-env NODE_ENV=test mocha -r esm ./src/test --timeout 10000",
+    "coverage": "npm run test && jest --coverage && cat ./coverage/lcov.info | coveralls",
     "start": "nodemon -r esm ./src/server.js",
     "start:dev": "nodemon --watch"
   },
@@ -24,6 +24,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -36,6 +37,7 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "nyc": "^15.1.0",
     "pg": "^8.3.0"
   }
 }

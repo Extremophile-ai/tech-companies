@@ -28,6 +28,7 @@
         "object-curly-newline":"off",
         "next-line-semi":"off",
         "no-else-return":"off",
-        "camelcase":"off"
+        "camelcase":"off",
+        "quotes":"off"
     }
 }
