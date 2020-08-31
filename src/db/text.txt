@@ -7,3 +7,6 @@ CREATE TABLE NG_tech_companies (
     email VARCHAR,
     website VARCHAR
   );
+
+  TEST_DB_URL =postgres://zjcsfpdb:y4dH_ARGMpRCvJC4YrYbecTxnvU0Smc_@lallah.db.elephantsql.com:5432/zjcsfpdb
+ 
