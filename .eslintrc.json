@@ -29,6 +29,7 @@
         "next-line-semi":"off",
         "no-else-return":"off",
         "camelcase":"off",
+        "quote-props":"off",
         "quotes":"off"
     }
 }

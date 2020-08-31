@@ -9,4 +9,6 @@ CREATE TABLE NG_tech_companies (
   );
 
   TEST_DB_URL =postgres://zjcsfpdb:y4dH_ARGMpRCvJC4YrYbecTxnvU0Smc_@lallah.db.elephantsql.com:5432/zjcsfpdb
- 
+
+ nyc cross-env NODE_ENV=test npm run createtable &&
+ "createtable": "node -r esm ./src/db/createtable.js --env",

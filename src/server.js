@@ -1,4 +1,5 @@
 import express from 'express';
+import dotenv from "dotenv";
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import {
@@ -8,6 +9,11 @@ import {
   updateTechCompanyInfo,
   deleteTechCompany,
 } from './controllers/controllers';
+import tableSchema from './createtable';
+
+dotenv.config();
+
+tableSchema();
 
 const app = express();
 app.use(bodyParser.json());

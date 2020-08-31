@@ -1,5 +1,3 @@
-/* eslint-disable quote-props */
-// /* eslint-disable quote-props */
 export default class demoData {
   static createNewTechCompany() {
     return {

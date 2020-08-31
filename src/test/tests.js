@@ -45,7 +45,7 @@ describe('Server.js should return all endpoints', async () => {
     it('it should get one company by id', (done) => {
       chai
         .request(server)
-        .get('/company/1')
+        .get('/company/2')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -60,7 +60,7 @@ describe('Server.js should return all endpoints', async () => {
     it('it should update a company successfully', (done) => {
       chai
         .request(server)
-        .put('/company/1')
+        .put('/company/2')
         .send(demoData.updateTechCompanyInfo())
         .end((err, results) => {
           results.should.have.status(200);
@@ -86,7 +86,7 @@ describe('Server.js should return all endpoints', async () => {
     it('it should delete a company with a valid ID', (done) => {
       chai
         .request(server)
-        .delete('/company/1')
+        .delete('/company/2')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('message');
