@@ -37,7 +37,7 @@ POST https://stark-reef-17608.herokuapp.com/company/create
 
 
 
-To Edit a company's info, 
+## To Edit a company's info, 
 PUT https://stark-reef-17608.herokuapp.com/company/:id
 
 {
