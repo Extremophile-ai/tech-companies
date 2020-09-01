@@ -3,26 +3,27 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/Extremophile-ai/tech-companies/badge.svg?branch=develop)](https://coveralls.io/github/Extremophile-ai/tech-companies?branch=develop)
 
-This is an API for top Nigerian based Tech companies.
+## This is an API for top Nigerian based Tech companies.
 
 
-An  'esm' package was used to enable the use of the es6 import syntax.
+An 'esm' package was used to enable the use of the es6 import syntax.
 
-To start, run  'nodemon -r esm server.js'
+To start, run npm install and npm start
 
-Link to Heroku https://stark-reef-17608.herokuapp.com/
+## Link to Heroku 
+https://stark-reef-17608.herokuapp.com/
 
-To get all Tech companies,
+## To get all Tech companies,
 GET https://stark-reef-17608.herokuapp.com/company
 
 
 
-To get a single Tech company,
+## To get a single Tech company,
 GET https://stark-reef-17608.herokuapp.com/company/:id
 
 
 
-To create a Nigerian Tech company,
+## To create a Nigerian Tech company,
 POST https://stark-reef-17608.herokuapp.com/company/create
 
 {
@@ -50,5 +51,6 @@ PUT https://stark-reef-17608.herokuapp.com/company/:id
 
 
 
-To delete a company,
+## To delete a company,
 DELETE https://stark-reef-17608.herokuapp.com/company/:id
+
